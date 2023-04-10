@@ -1,11 +1,11 @@
 package edu.ucalgary.oop;
 
-public class Porcupine {
+public class Porcupine extends Animal {
 
-    private static final int[] FEED_WINDOW = {19, 20, 21};
-    private static final int PREP_TIME = 0;
-    private static final int FEED_TIME = 5;
-    private static final int CLEAN_TIME = 10;
+    private static final int[] FEEDINGTIME = {19, 20, 21};
+    private static final int PREPTIME = 0;
+    private static final int FEEDDURATION = 5;
+    private static final int CLEANINGTIME = 10;
 
     // Constructor for creating an instance of the Porcupine class
     // @param animalNickname - the nickname of the porcupine
@@ -15,18 +15,18 @@ public class Porcupine {
 
     // Getter methods for feeding window, preparation time, feeding time, and cleaning time
     public int[] getFeedWindow() {
-        return FEED_WINDOW;
+        return FEEDINGTIME;
     }
 
     public int getPrepTime() {
-        return PREP_TIME;
+        return PREPTIME;
     }
 
     public int getFeedTime() {
-        return FEED_TIME;
+        return FEEDDURATION;
     }
 
     public int getCleanTime() {
-        return CLEAN_TIME;
+        return CLEANINGTIME;
     }
 }
