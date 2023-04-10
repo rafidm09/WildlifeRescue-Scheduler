@@ -35,7 +35,7 @@ INSERT INTO ANIMALS (AnimalID, AnimalNickname, AnimalSpecies) VALUES
 (15, 'Spot', 'coyote');
 
 DROP TABLE IF EXISTS TASKS;
-CREATE TABLE TASTS (
+CREATE TABLE TASKS (
 	TaskID			int not null AUTO_INCREMENT,
 	Description		varchar(50),
         Duration                int,
@@ -60,7 +60,8 @@ CREATE TABLE TREATMENTS (
       	TreatmentID	int not null AUTO_INCREMENT,
 	AnimalID	int not null,
 	TaskID		int not null,
-	StartHour	int not null
+	StartHour	int not null,
+	primary key (TreatmentID)
 );
 
 INSERT INTO TREATMENTS (AnimalID, TaskID, StartHour) VALUES
