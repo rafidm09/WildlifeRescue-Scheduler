@@ -10,7 +10,7 @@ public class Task {
 		this.time=t;
 	}
 	/**Getters**/
-	public String getDescription() {return thhis.description;}
+	public String getDescription() {return this.description;}
 	public String getAnimal() {return this.animal;}
 	public int getTime() {return this.time;}
 	/**Setters**/
