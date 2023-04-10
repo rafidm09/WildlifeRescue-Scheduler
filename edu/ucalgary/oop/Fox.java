@@ -1,14 +1,14 @@
 package edu.ucalgary.oop;
 
-public class Raccoon extends Animal {
+public class Fox {
     private static final int[] FEEDINGTIME = {0, 1, 2};
-    private static final int PREPTIME = 0;
+    private static final int PREPTIME = 5;
     private static final int FEEDDURATION = 5;
     private static final int CLEANINGTIME = 5;
 
-    // Constructor for creating an instance of the Raccoon class
-    // @param animalNickname - the nickname of the raccoon
-    public Raccoon(int animalID, String animalNickname, String animalSpecies) {
+    // Constructor for creating an instance of the fox class
+    // @param animalNickname - the nickname of the fox
+    public Fox(int animalID, String animalNickname, String animalSpecies) {
         super(animalID, animalNickname, animalSpecies);
     }
 
@@ -28,6 +28,5 @@ public class Raccoon extends Animal {
     public int getCleanTime() {
         return CLEANINGTIME;
     }
-
 }
 

@@ -13,7 +13,7 @@ public class Porcupine extends Animal {
         super(animalID, animalNickname, animalSpecies);
     }
 
-    // Getter methods for feeding window, preparation time, feeding time, and cleaning time
+    // Getter methods for feeding time, preparation time, feeding duration, and cleaning time
     public int[] getFeedWindow() {
         return FEEDINGTIME;
     }
