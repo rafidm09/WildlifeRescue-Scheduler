@@ -5,10 +5,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.time.LocalDate;
 import java.time.Year;
+import java.sql.*;
 
 public class GUI implements ItemListener{
-	static JPanel cards;
-	static LocalDate date;
+	static JPanel cards = null;
+	static LocalDate date = null;
+	static Connection connection = null;
 	/**Reusable method for adding label and text fields in format: text ______ **/
 	public static TextField addTextEntry(String text, Container container) {
 		JPanel panel = new JPanel();
@@ -69,6 +71,7 @@ public class GUI implements ItemListener{
 					popupBox("Invalid Date(y/m/d): "+y+"/"+m+"/"+d, "Invalid Date");
 				}
 				if (date!=null) {
+					//generate schedule here with db and LocalDate
 					CardLayout cl = (CardLayout) (cards.getLayout());
 					cl.show(cards, "App");
 				}
@@ -90,14 +93,14 @@ public class GUI implements ItemListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Display schedule
-				popupBox("Schedule disp","Display");
+				popupBox("Schedule disp","Display Message");
 			}
 		});
 		down.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Download schedule
-				popupBox("Schedule downloaded","Download");
+				popupBox("Schedule downloaded","Download Message");
 			}
 		});
 		back.addActionListener(new ActionListener() {
@@ -120,14 +123,23 @@ public class GUI implements ItemListener{
 		login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout) (cards.getLayout());
-				cl.show(cards, "Date");
+				try {
+					String name = user.getText();
+					String password = pass.getText();
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/EWR",name,password);//sql address here
+					connection = conn;
+					CardLayout cl = (CardLayout) (cards.getLayout());
+					cl.show(cards, "Date");
+				} catch(Exception exc) {
+					popupBox("Connection Error", "Connection Error");
+				}
 			}
 		});
 		return pane;
 	}
 	/**Startup**/
-	public static void start() {
+	public static void main(String[]args) {
 		EventQueue.invokeLater(() -> {
 			JFrame frame = new JFrame("Schedule Generator");
 			frame.setSize(300, 400);
@@ -147,10 +159,6 @@ public class GUI implements ItemListener{
 			
 			frame.setVisible(true);
 		});
-	}
-	/**Startup**/
-	public static void main(String[]args) {
-		start();
 	}
 	public void itemStateChanged(ItemEvent evt) {
 		CardLayout cl = (CardLayout)(cards.getLayout());
