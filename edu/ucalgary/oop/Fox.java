@@ -1,6 +1,6 @@
 package edu.ucalgary.oop;
 
-public class Fox {
+public class Fox extends Animal {
     private static final int[] FEEDINGTIME = {0, 1, 2};
     private static final int PREPTIME = 5;
     private static final int FEEDDURATION = 5;
