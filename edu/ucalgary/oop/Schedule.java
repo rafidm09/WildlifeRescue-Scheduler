@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 class Schedule {
+    private Database db;
     // Contains the timetable
     HashMap<String, Treatment> scheduleMap = new HashMap<>();
 
@@ -26,18 +27,18 @@ class Schedule {
     private ArrayList<Treatment> treatments;
 
     public Schedule() {
-        Database db = new Database();
-        db.createConnection();
+        this.db = new Database();
+        this.db.createConnection();
 
-        db.selectAnimals();
-        this.coyotes = db.getCoyotes();
-        this.beavers = db.getBeavers();
-        this.foxes = db.getFoxes();
-        this.raccoons = db.getRaccoons();
-        this.porcupines = db.getPorcupines();
+        this.db.selectAnimals();
+        this.coyotes = this.db.getCoyotes();
+        this.beavers = this.db.getBeavers();
+        this.foxes = this.db.getFoxes();
+        this.raccoons = this.db.getRaccoons();
+        this.porcupines = this.db.getPorcupines();
 
-        this.tasks = db.selectTasks();
-        this.treatments = db.selectTreatments();
+        this.tasks = this.db.selectTasks();
+        this.treatments = this.db.selectTreatments();
     }
 
     public void initializeData() {
@@ -309,6 +310,10 @@ class Schedule {
         for (String key: map) {
             System.out.println(key + " -> " + this.scheduleMap.get(key));
         }
+
+    }
+
+    public void updateData() {
 
     }
 

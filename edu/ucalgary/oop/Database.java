@@ -32,6 +32,21 @@ public class Database {
         }
     }
 
+    public void updateTime(Integer newStartHour, Integer id) {
+        try {
+
+            PreparedStatement myStmt = dbConnect.prepareStatement("UPDATE Treatments SET StartHour=? WHERE TreatmentID=?");
+            myStmt.setInt(1, newStartHour);
+            myStmt.setInt(2, id);
+
+            myStmt.executeUpdate();
+            myStmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Queries the database for all animals and stores them in separate lists based on their species.
      */
