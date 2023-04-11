@@ -105,6 +105,7 @@ public class GUI {
 				//resume generation
 			}
 		} catch (Exception e) {//catch illegal volunteer add
+			e.printStackTrace();
 			boolean volun = inputPop("An additional volunteer is needed. Confirmation is required to continue.");
 			if (volun) {
 				scheduleBuilder(true);
