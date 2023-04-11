@@ -7,10 +7,26 @@ import java.time.LocalDate;
 import java.time.Year;
 import java.sql.*;
 
+/**
+generates and runs the graphical user interface for the ENSF 380 Final Project
+requires the assossiated schedule classes
+@author Joshua Froese
+@version 1.2
+**/
 public class GUI {
 	static JPanel cards = null;
 	static LocalDate date = null;
 	static Connection connection = null;
+	/**
+	@param text			text for the label
+	@param container	the container that the label is being added to
+	Reusable method for adding labels**/
+	public static void addLabel(String text, Container container) {
+		JPanel panel = new JPanel();
+		JLabel label = new JLabel(text);
+		panel.add(label);
+		container.add(panel);
+	}
 	/**
 	@param text			text for the label infront of the field
 	@param container	the container that the field is being added to
@@ -102,12 +118,12 @@ public class GUI {
 		JPanel pane = new JPanel();
 		pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 		
-		JLabel label = new JLabel("Enter Treatment to modify");
-		pane.add(label);
+		addLabel("Enter Treatment to modify",pane);
 		TextField name = addTextEntry("Treatment",pane);
 		JSpinner hour = addSpin("New start hour", 0, 0, 23,pane);
 		JButton regen = addButton("Regenerate with changes",pane);
 		JButton change = addButton("Perform additional changes",pane);
+		JButton cancel = addButton("Cancel Modification of Database",pane);
 		JButton reject = addButton("Cancel Generation",pane);
 		
 		regen.addActionListener(new ActionListener() {
@@ -124,6 +140,13 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				//insert change info here
 				infoPop("Database Changed","Display Message");
+			}
+		});
+		cancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cl = (CardLayout) (cards.getLayout());
+				cl.show(cards, "App");
 			}
 		});
 		reject.addActionListener(new ActionListener() {
@@ -143,8 +166,7 @@ public class GUI {
 		JPanel pane = new JPanel();
 		pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 		
-		JLabel label = new JLabel("Enter Date");
-		pane.add(label);
+		addLabel("Enter Date",pane);
 		int y = Year.now().getValue();
 		JSpinner year = addSpin("Year:",y,y-15,y+15,pane);//Year is capped at the current year+-15
 		JSpinner mon = addSpin("Month:",1,1,12,pane);
@@ -179,11 +201,11 @@ public class GUI {
 		JPanel pane = new JPanel();
 		pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 		
-		JLabel label = new JLabel("Choose Display Method");
-		pane.add(label);
+		addLabel("Choose Display Method",pane);
 		JButton disp = addButton("Display Schedule",pane);
 		JButton down = addButton("Download Schedule",pane);
 		JButton back = addButton("Pick new Date",pane);
+		JButton mod = addButton("Modify Database",pane);
 		
 		disp.addActionListener(new ActionListener() {
 			@Override
@@ -204,6 +226,13 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cl = (CardLayout) (cards.getLayout());
 				cl.show(cards, "Date");				
+			}
+		});
+		mod.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cl = (CardLayout) (cards.getLayout());
+				cl.show(cards, "Edit");				
 			}
 		});
 		return pane;
