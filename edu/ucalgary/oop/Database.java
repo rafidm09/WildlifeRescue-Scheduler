@@ -9,10 +9,15 @@ public class Database {
 
     private Connection dbConnect;
     private ResultSet results;
-
+    /**
+     * Constructor for the Database class.
+     */
     public Database() {
     }
 
+    /**
+     * Establishes a connection to the database.
+     */
     public void createConnection() {
 
         try {
@@ -22,6 +27,10 @@ public class Database {
         }
     }
 
+    /**
+     * Retrieves all animals from the database and stores them in their respective ArrayLists
+     * (coyotes, beavers, foxes, racoons, and porcupines).
+     */
     public  void selectAnimals() {
 
         try {
@@ -67,6 +76,11 @@ public class Database {
 
     }
 
+
+    /**
+     * Retrieves all tasks from the database and stores them in an ArrayList.
+     * @return an ArrayList of Task objects
+     */
     public ArrayList<Task> selectTasks() {
         ArrayList<Task> tasks = new ArrayList<Task>();
 
@@ -89,6 +103,10 @@ public class Database {
 
     }
 
+    /**
+     * Retrieves all treatments from the database and stores them in an ArrayList.
+     * @return an ArrayList of Treatment objects
+     */
     public ArrayList<Treatment> selectTreatments() {
         ArrayList<Treatment> treatments = new ArrayList<Treatment>();
 
