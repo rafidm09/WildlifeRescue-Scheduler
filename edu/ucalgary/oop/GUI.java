@@ -14,6 +14,7 @@ requires the assossiated schedule classes
 @version 1.2
 **/
 public class GUI {
+	static Schedule sched = new Schedule();
 	static JPanel cards = null;
 	static LocalDate date = null;
 	static Connection connection = null;
@@ -98,6 +99,8 @@ public class GUI {
 		try {
 			if (!resume) {
 				//generate schedule
+				sched.initializeData();
+				sched.makeSchedule();
 			} else {
 				//resume generation
 			}
