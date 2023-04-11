@@ -3,7 +3,7 @@ package edu.ucalgary.oop;
  The Treatment class represents a medical treatment to be given to an animal at a specified start hour.
  */
 public class Treatment {
-
+    private int id;          //treatment ID
     private int animalID;    // ID of the animal receiving the treatment
     private int taskID;      // ID of the task being performed for the treatment
     private int startHour;   // Starting hour (in military time) of the treatment
@@ -17,12 +17,20 @@ public class Treatment {
      *
      * @throws IllegalArgumentException if any of the input parameters are invalid.
      */
-    public Treatment(int animalID, int taskID, int startHour) throws IllegalArgumentException {
+    public Treatment(int id, int animalID, int taskID, int startHour) throws IllegalArgumentException {
+        this.id = id;
         this.animalID = animalID;
         this.taskID = taskID;
         this.startHour = startHour;
     }
-
+    /**
+     * Returns the treatment ID
+     *
+     * @return the treatment ID
+     */
+    public int getId() {
+        return this.id;
+    }
     /**
      * Returns the ID of the animal receiving the treatment.
      *

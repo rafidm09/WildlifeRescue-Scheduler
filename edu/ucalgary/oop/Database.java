@@ -1,25 +1,30 @@
 package edu.ucalgary.oop;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 
-
 public class Database {
 
-    private Connection dbConnect;
-    private ResultSet results;
+    private Connection dbConnect;  // The database connection object
+    private ResultSet results;     // The result set object used for database queries
+    private ArrayList<Coyote> coyotes;     // The list of Coyote objects retrieved from the database
+    private ArrayList<Beaver> beavers;     // The list of Beaver objects retrieved from the database
+    private ArrayList<Fox> foxes;         // The list of Fox objects retrieved from the database
+    private ArrayList<Raccoon> raccoons;   // The list of Raccoon objects retrieved from the database
+    private ArrayList<Porcupine> porcupines;  // The list of Porcupine objects retrieved from the database
+    private ArrayList<Task> tasks;        // The list of Task objects retrieved from the database
+    private ArrayList<Treatment> treatments; // The list of Treatment objects retrieved from the database
+
     /**
-     * Constructor for the Database class.
+     * Constructs a new Database object.
      */
     public Database() {
     }
 
     /**
-     * Establishes a connection to the database.
+     * Creates a connection to the MySQL database.
      */
     public void createConnection() {
-
         try {
             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/EWR", "oop", "password");
         } catch (SQLException e) {
@@ -28,61 +33,93 @@ public class Database {
     }
 
     /**
-     * Retrieves all animals from the database and stores them in their respective ArrayLists
-     * (coyotes, beavers, foxes, racoons, and porcupines).
+     * Queries the database for all animals and stores them in separate lists based on their species.
      */
-    public  void selectAnimals() {
-
+    public void selectAnimals() {
         try {
             Statement myStmt = dbConnect.createStatement();
 
             results = myStmt.executeQuery("SELECT * FROM animals");
-
-            ArrayList<Coyote> coyotes = new ArrayList<Coyote>();
-            ArrayList<Beaver> beavers = new ArrayList<Beaver>();
-            ArrayList<Fox> foxes = new ArrayList<Fox>();
-            ArrayList<Raccoon> racoons = new ArrayList<Raccoon>();
-            ArrayList<Porcupine> porcupines = new ArrayList<Porcupine>();
+            this.coyotes = new ArrayList<Coyote>();
+            this.beavers = new ArrayList<Beaver>();
+            this.foxes = new ArrayList<Fox>();
+            this.raccoons = new ArrayList<Raccoon>();
+            this.porcupines = new ArrayList<Porcupine>();
 
             while (results.next()) {
                 if (results.getString("AnimalSpecies").equals("coyote")) {
                     Coyote coyote_new = new Coyote(results.getInt("animalID"), results.getString("AnimalNickname"), results.getString("AnimalSpecies"));
-                    coyotes.add(coyote_new);
+                    this.coyotes.add(coyote_new);
                 }
                 if (results.getString("AnimalSpecies").equals("fox")) {
                     Fox fox_new = new Fox(results.getInt("animalID"), results.getString("AnimalNickname"), results.getString("AnimalSpecies"));
-                    foxes.add(fox_new);
+                    this.foxes.add(fox_new);
                 }
                 if (results.getString("AnimalSpecies").equals("beaver")) {
                     Beaver beaver_new = new Beaver(results.getInt("animalID"), results.getString("AnimalNickname"), results.getString("AnimalSpecies"));
-                    beavers.add(beaver_new);
+                    this.beavers.add(beaver_new);
                 }
                 if (results.getString("AnimalSpecies").equals("raccoon")) {
                     Raccoon racoon_new = new Raccoon(results.getInt("animalID"), results.getString("AnimalNickname"), results.getString("AnimalSpecies"));
-                    racoons.add(racoon_new);
+                    this.raccoons.add(racoon_new);
                 }
                 if (results.getString("AnimalSpecies").equals("porcupine")) {
                     Porcupine porcupine_new = new Porcupine(results.getInt("animalID"), results.getString("AnimalNickname"), results.getString("AnimalSpecies"));
-                    porcupines.add(porcupine_new);
+                    this.porcupines.add(porcupine_new);
                 }
-
             }
 
             myStmt.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-
     }
 
-
     /**
-     * Retrieves all tasks from the database and stores them in an ArrayList.
-     * @return an ArrayList of Task objects
+
+     Returns the list of Coyotes in the collection.
+     @return ArrayList<Coyote> The list of Coyotes in the collection.
+     */
+    public ArrayList<Coyote> getCoyotes() {
+        return this.coyotes;
+    }
+    /**
+
+     Returns the list of Beavers in the collection.
+     @return ArrayList<Beaver> The list of Beavers in the collection.
+     */
+    public ArrayList<Beaver> getBeavers() {
+        return this.beavers;
+    }
+    /**
+
+     Returns the list of Foxes in the collection.
+     @return ArrayList<Fox> The list of Foxes in the collection.
+     */
+    public ArrayList<Fox> getFoxes() {
+        return this.foxes;
+    }
+    /**
+
+     Returns the list of Raccoons in the collection.
+     @return ArrayList<Raccoon> The list of Raccoons in the collection.
+     */
+    public ArrayList<Raccoon> getRaccoons() {
+        return this.raccoons;
+    }
+    /**
+
+     Returns the list of Porcupines in the collection.
+     @return ArrayList<Porcupine> The list of Porcupines in the collection.
+     */
+    public ArrayList<Porcupine> getPorcupines() {
+        return this.porcupines;
+    }
+    /**
+     * Queries the database for all tasks and stores them in an array list called tasks
      */
     public ArrayList<Task> selectTasks() {
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        this.tasks = new ArrayList<Task>();
 
         try {
             Statement myStmt = dbConnect.createStatement();
@@ -91,7 +128,7 @@ public class Database {
 
             while (results.next()) {
                 Task task_new = new Task(results.getInt("TaskID"), results.getString("Description"), results.getInt("Duration"), results.getInt("MaxWindow"));
-                tasks.add(task_new);
+                this.tasks.add(task_new);
 
             }
 
@@ -99,24 +136,22 @@ public class Database {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return tasks;
+        return this.tasks;
 
     }
-
     /**
-     * Retrieves all treatments from the database and stores them in an ArrayList.
-     * @return an ArrayList of Treatment objects
+     * Queries the database for all treatments and stores them in an arraylist called treatments
      */
     public ArrayList<Treatment> selectTreatments() {
-        ArrayList<Treatment> treatments = new ArrayList<Treatment>();
+        this.treatments = new ArrayList<Treatment>();
 
         try {
             Statement myStmt = dbConnect.createStatement();
             results = myStmt.executeQuery("SELECT * FROM TREATMENTS ORDER BY StartHour;");
 
             while (results.next()) {
-                Treatment treatment_new = new Treatment(results.getInt("animalID"), results.getInt("taskID"), results.getInt("startHour"));
-                treatments.add(treatment_new);
+                Treatment treatment_new = new Treatment(results.getInt("TreatmentID"), results.getInt("animalID"), results.getInt("taskID"), results.getInt("startHour"));
+                this.treatments.add(treatment_new);
 
                 System.out.println("Print Treatments: " + results.getInt("animalID") + ", " + results.getString("taskID") + ", " + results.getString("startHour"));
 
@@ -126,7 +161,7 @@ public class Database {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return treatments;
+        return this.treatments;
 
     }
 }
