@@ -7,8 +7,8 @@ public class Hour {
 	private int timeAvailable=60;
 	private boolean backup=false;
 	/**Adds task and updates time values**/
-	public void addTask(Task t) {
-		int time = t.getDuration();
+	public void addTask(Task task) {
+		int time = task.getDuration();
 		this.timeSpent+=time;
 		this.timeAvailable-=time;
 		if (this.timeAvailable<0) {
@@ -20,7 +20,7 @@ public class Hour {
 				//backup handler here
 			}
 		}
-		this.tasks.add(t);
+		this.tasks.add(task);
 	}
 	/**Removes task at index and updates time values**/
 	public void removeTask(int i) {
