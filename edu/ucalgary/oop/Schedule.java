@@ -3,8 +3,11 @@ package edu.ucalgary.oop;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import java.io.*;
+import java.time.LocalDate;
 
 class Schedule {
+	private LocalDate date;
     private Database db;
     // Contains the timetable
     HashMap<String, Treatment> scheduleMap = new HashMap<>();
@@ -26,7 +29,8 @@ class Schedule {
     private ArrayList<Task> tasks;
     private ArrayList<Treatment> treatments;
 
-    public Schedule() {
+    public Schedule(LocalDate date) {
+		this.date = date;
         this.db = new Database();
         this.db.createConnection();
 
@@ -108,7 +112,6 @@ class Schedule {
             Treatment treatment = this.treatmentMap.get(i);
 
             if (tasks.contains(treatment.getTask())) {
-                System.out.println(treatment.getTask());
                 Integer startHour = treatment.getStartHour();
 
                 this.scheduleMap.put(String.valueOf(startHour), treatment);
@@ -123,7 +126,6 @@ class Schedule {
             Treatment treatment = this.treatmentMap.get(i);
 
             if (tasks.contains(treatment.getTask())) {
-                System.out.println(treatment.getTask());
                 Integer startHour = treatment.getStartHour();
 
                 if (this.scheduleMap.get(String.valueOf(startHour)) == null) {
@@ -131,12 +133,12 @@ class Schedule {
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null && (startHour - 1 < 24) && startHour - 1 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 1), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null && (startHour + 1 < 24) && startHour + 1 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour + 1), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
@@ -151,7 +153,6 @@ class Schedule {
             Treatment treatment = this.treatmentMap.get(i);
 
             if (tasks.contains(treatment.getTask())) {
-                System.out.println(treatment.getTask());
                 Integer startHour = treatment.getStartHour();
 
                 if (this.scheduleMap.get(String.valueOf(startHour)) == null) {
@@ -159,22 +160,22 @@ class Schedule {
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null && (startHour - 1 < 24) && startHour - 1 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 1), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null && (startHour + 1 < 24) && startHour + 1 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour + 1), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 2)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 2)) == null && (startHour - 2 < 24) && startHour - 2 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 2), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 2)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 2)) == null && (startHour + 2 < 24) && startHour + 2 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour + 2), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
@@ -189,7 +190,6 @@ class Schedule {
             Treatment treatment = this.treatmentMap.get(i);
 
             if (tasks.contains(treatment.getTask())) {
-                System.out.println(treatment.getTask());
                 Integer startHour = treatment.getStartHour();
 
                 if (this.scheduleMap.get(String.valueOf(startHour)) == null) {
@@ -197,32 +197,32 @@ class Schedule {
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null && (startHour - 1 < 24) && startHour - 1 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 1), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null && (startHour + 1 < 24) && startHour + 1 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour + 1), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 2)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 2)) == null && (startHour - 2 < 24) && startHour - 2 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 2), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 2)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 2)) == null && (startHour + 2 < 24) && startHour + 2 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour + 2), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 3)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 3)) == null && (startHour - 3 < 24) && startHour - 3 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 3), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 3)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 3)) == null && (startHour + 3 < 24) && startHour + 3 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour + 3), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
@@ -237,7 +237,6 @@ class Schedule {
             Treatment treatment = this.treatmentMap.get(i);
 
             if (tasks.contains(treatment.getTask())) {
-                System.out.println(treatment.getTask());
                 Integer startHour = treatment.getStartHour();
 
                 if (this.scheduleMap.get(String.valueOf(startHour)) == null) {
@@ -245,42 +244,43 @@ class Schedule {
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null && (startHour - 1 < 24) && startHour - 1 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 1), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null && (startHour + 1 < 24) && startHour + 1 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour + 1), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 2)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 2)) == null && (startHour - 2 < 24) && startHour - 2 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 2), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 2)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 2)) == null && (startHour + 2 < 24) && startHour + 2 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour + 2), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 3)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 3)) == null && (startHour - 3 < 24) && startHour - 3 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 3), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 3)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 3)) == null && (startHour + 3 < 24) && startHour + 3 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour + 3), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour - 4)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour - 4)) == null && (startHour - 4 < 24) && startHour - 4 > 0) {
                     this.scheduleMap.put(String.valueOf(startHour - 4), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
 
-                if (this.scheduleMap.get(String.valueOf(startHour + 4)) == null) {
+                if (this.scheduleMap.get(String.valueOf(startHour + 4)) == null && (startHour + 4 < 24) && startHour + 4 > 0) {
+					
                     this.scheduleMap.put(String.valueOf(startHour + 4), treatment);
                     this.treatmentTrack.put(treatment.getAnimalID(), Boolean.TRUE);
                 }
@@ -305,17 +305,46 @@ class Schedule {
                 }
             }
         }
-
+/**
         Set<String> map = this.scheduleMap.keySet();
         for (String key: map) {
             System.out.println(key + " -> " + this.scheduleMap.get(key));
         }
-
+**/
     }
 
-    public void updateData() {
-
+    public void update(int i, int n) {
+		this.db.updateTime(i,n);
     }
+	
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+	
+	public String toText() {
+		String result = this.date.toString()+"\n";
+        for (int i=0; i<24; i++) {
+            result += ("Hour:" + i + " Tasks: ");
+			if (this.scheduleMap.get(Integer.toString(i))!=null) {
+				result += "Task ID:"+this.scheduleMap.get(Integer.toString(i)).getTask();
+				result += " Animal ID:"+this.scheduleMap.get(Integer.toString(i)).getAnimalID();
+			}
+			result += "\n";
+        }
+		return result;
+	}
+	
+	public void toFile() {
+		try {
+			File f = new File("Schedule"+date.toString()+".txt");
+			FileWriter out = new FileWriter("Schedule"+date.toString()+".txt");
+			out.write(toText());
+			out.close();
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+	}
 
     public HashMap<String, Treatment> getSchedule() {
         return this.scheduleMap;

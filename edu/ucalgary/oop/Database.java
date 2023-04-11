@@ -168,7 +168,7 @@ public class Database {
                 Treatment treatment_new = new Treatment(results.getInt("TreatmentID"), results.getInt("animalID"), results.getInt("taskID"), results.getInt("startHour"));
                 this.treatments.add(treatment_new);
 
-                System.out.println("Print Treatments: " + results.getInt("animalID") + ", " + results.getString("taskID") + ", " + results.getString("startHour"));
+                //System.out.println("Print Treatments: " + results.getInt("animalID") + ", " + results.getString("taskID") + ", " + results.getString("startHour"));
 
             }
 

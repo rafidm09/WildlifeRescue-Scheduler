@@ -14,9 +14,9 @@ requires the assossiated schedule classes
 @version 1.2
 **/
 public class GUI {
-	static Schedule sched = new Schedule();
 	static JPanel cards = null;
 	static LocalDate date = null;
+	static Schedule sched = new Schedule(date);
 	static Connection connection = null;
 	/**
 	@param text			text for the label
@@ -102,6 +102,7 @@ public class GUI {
 				sched.initializeData();
 				sched.makeSchedule();
 			} else {
+				sched.makeSchedule();
 				//resume generation
 			}
 		} catch (Exception e) {//catch illegal volunteer add
@@ -123,7 +124,7 @@ public class GUI {
 		pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 		
 		addLabel("Enter Treatment to modify",pane);
-		TextField name = addTextEntry("Treatment",pane);
+		JSpinner id = addSpin("ID:", 0, 0, 50,pane);
 		JSpinner hour = addSpin("New start hour", 0, 0, 23,pane);
 		JButton regen = addButton("Regenerate with changes",pane);
 		JButton change = addButton("Perform additional changes",pane);
@@ -133,7 +134,9 @@ public class GUI {
 		regen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//insert change info here
+				int i = (Integer)id.getValue();
+				int h = (Integer)hour.getValue();
+				sched.update(h,i);
 				scheduleBuilder(false);
 				CardLayout cl = (CardLayout) (cards.getLayout());
 				cl.show(cards, "App");
@@ -142,7 +145,9 @@ public class GUI {
 		change.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//insert change info here
+				int i = (Integer)id.getValue();
+				int h = (Integer)hour.getValue();
+				sched.update(h,i);
 				infoPop("Database Changed","Display Message");
 			}
 		});
@@ -186,6 +191,7 @@ public class GUI {
 				date = null;
 				try {
 					date = LocalDate.of(y,m,d);
+					sched.setDate(date);
 				} catch (Exception exc) {//catches invalid dates
 					infoPop("Invalid Date(y/m/d): "+y+"/"+m+"/"+d, "Invalid Date");
 				}
@@ -215,13 +221,13 @@ public class GUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Display schedule
-				infoPop("Schedule disp","Display Message");
+				infoPop(sched.toText(),"Display Message");
 			}
 		});
 		down.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Download schedule
+				sched.toFile();
 				infoPop("Schedule downloaded","Download Message");
 			}
 		});
