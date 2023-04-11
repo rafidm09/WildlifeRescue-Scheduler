@@ -106,7 +106,6 @@ class Schedule {
                 Integer startHour = treatment.getStartHour();
 
                 this.scheduleMap.put(String.valueOf(startHour), treatment);
-                System.out.println(String.valueOf(startHour) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
             }
         }
 
@@ -122,17 +121,14 @@ class Schedule {
 
                 if (this.scheduleMap.get(String.valueOf(startHour)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour), treatment);
-                    System.out.println(String.valueOf(startHour) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 1), treatment);
-                    System.out.println(String.valueOf(startHour - 1) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 1), treatment);
-                    System.out.println(String.valueOf(startHour + 1) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
             }
@@ -150,27 +146,22 @@ class Schedule {
 
                 if (this.scheduleMap.get(String.valueOf(startHour)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour), treatment);
-                    System.out.println(String.valueOf(startHour) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 1), treatment);
-                    System.out.println(String.valueOf(startHour - 1) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 1), treatment);
-                    System.out.println(String.valueOf(startHour + 1) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 2)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 2), treatment);
-                    System.out.println(String.valueOf(startHour - 2) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 2)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 2), treatment);
-                    System.out.println(String.valueOf(startHour + 2) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
             }
@@ -188,37 +179,30 @@ class Schedule {
 
                 if (this.scheduleMap.get(String.valueOf(startHour)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour), treatment);
-                    System.out.println(String.valueOf(startHour) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 1), treatment);
-                    System.out.println(String.valueOf(startHour - 1) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 1), treatment);
-                    System.out.println(String.valueOf(startHour + 1) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 2)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 2), treatment);
-                    System.out.println(String.valueOf(startHour - 2) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 2)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 2), treatment);
-                    System.out.println(String.valueOf(startHour + 2) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 3)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 3), treatment);
-                    System.out.println(String.valueOf(startHour - 3) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 3)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 3), treatment);
-                    System.out.println(String.valueOf(startHour + 3) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
             }
@@ -236,52 +220,47 @@ class Schedule {
 
                 if (this.scheduleMap.get(String.valueOf(startHour)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour), treatment);
-                    System.out.println(String.valueOf(startHour) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 1)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 1), treatment);
-                    System.out.println(String.valueOf(startHour - 1) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 1)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 1), treatment);
-                    System.out.println(String.valueOf(startHour + 1) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 2)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 2), treatment);
-                    System.out.println(String.valueOf(startHour - 2) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 2)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 2), treatment);
-                    System.out.println(String.valueOf(startHour + 2) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 3)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 3), treatment);
-                    System.out.println(String.valueOf(startHour - 3) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 3)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 3), treatment);
-                    System.out.println(String.valueOf(startHour + 3) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour - 4)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour - 4), treatment);
-                    System.out.println(String.valueOf(startHour - 4) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
                 if (this.scheduleMap.get(String.valueOf(startHour + 4)) == null) {
                     this.scheduleMap.put(String.valueOf(startHour + 4), treatment);
-                    System.out.println(String.valueOf(startHour + 4) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
                 }
 
             }
         }
-		
+
+        Set<String> map = this.scheduleMap.keySet();
+        for (String key: map) {
+            System.out.println(key + " -> " + this.scheduleMap.get(key));
+        }
     }
 
     public HashMap<String, Treatment> getSchedule() {
