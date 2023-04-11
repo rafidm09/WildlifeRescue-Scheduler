@@ -22,9 +22,7 @@ public class Database {
         }
     }
 
-    public String selectAnimals() {
-
-        StringBuffer animals = new StringBuffer();
+    public  void selectAnimals() {
 
         try {
             Statement myStmt = dbConnect.createStatement();
@@ -59,10 +57,6 @@ public class Database {
                     porcupines.add(porcupine_new);
                 }
 
-                System.out.println("Print results: " + results.getString("animalID") + ", " + results.getString("AnimalNickname") + ", " + results.getString("AnimalSpecies"));
-
-                animals.append(results.getString("animalID") + ", " + results.getString("animalNickname"));
-                animals.append('\n');
             }
 
             myStmt.close();
@@ -70,12 +64,32 @@ public class Database {
             ex.printStackTrace();
         }
 
-        return animals.toString();
+
+    }
+
+    public ArrayList<Task> selectTasks() {
+        ArrayList<Task> tasks = new ArrayList<Task>();
+
+        try {
+            Statement myStmt = dbConnect.createStatement();
+
+            results = myStmt.executeQuery("SELECT * FROM TASKS;");
+
+            while (results.next()) {
+                Task task_new = new Task(results.getInt("TaskID"), results.getString("Description"), results.getInt("Duration"), results.getInt("MaxWindow"));
+                tasks.add(task_new);
+
+            }
+
+            myStmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return tasks;
+
     }
 
     public ArrayList<Treatment> selectTreatments() {
-
-        StringBuffer medicalTreatments = new StringBuffer();
         ArrayList<Treatment> treatments = new ArrayList<Treatment>();
 
         try {
@@ -88,48 +102,13 @@ public class Database {
 
                 System.out.println("Print Treatments: " + results.getInt("animalID") + ", " + results.getString("taskID") + ", " + results.getString("startHour"));
 
-                medicalTreatments.append(results.getString("animalID") + ", " + results.getString("startHour"));
-                medicalTreatments.append('\n');
-
             }
-            System.out.println("Here is a list of Treatments: ");
-            System.out.println(medicalTreatments.toString());
 
             myStmt.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return treatments;
-
-    }
-
-    public ArrayList<Task> selectTasks() {
-
-        StringBuffer strTasks = new StringBuffer();
-        ArrayList<Task> tasks = new ArrayList<Task>();
-
-        try {
-            Statement myStmt = dbConnect.createStatement();
-
-            results = myStmt.executeQuery("SELECT * FROM TASKS;");
-
-            while (results.next()) {
-                Task task_new = new Task(results.getInt("TaskID"), results.getString("Description"), results.getInt("Duration"), results.getInt("MaxWindow"));
-                tasks.add(task_new);
-
-                strTasks.append(results.getString("TaskID") + ", " + results.getString("Duration"));
-                strTasks.append('\n');
-
-            }
-
-            System.out.println("Here is a list of TASKS: ");
-            System.out.println(strTasks);
-
-            myStmt.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return tasks;
 
     }
 }
