@@ -287,14 +287,15 @@ class Schedule {
             }
         }
 
-        Set<Integer> flags = this.treatmentTrack.keySet();
-        for (Integer track: flags) {
-            if (this.treatmentTrack.get(track) == Boolean.FALSE) {
+        Set<Integer> treatmentTrackKeys = this.treatmentTrack.keySet();
+        Set<String> scheduleMapKeys = this.scheduleMap.keySet();
+        Set<Integer> treatmentMapKeys = this.treatmentMap.keySet();
 
-                Set<String> map = this.scheduleMap.keySet();
-                for (String key: map) {
-                    if (this.scheduleMap.get(key) == null) {
-                        Treatment treatment = this.treatmentMap.get(key);
+        for (Integer trackKey: treatmentTrackKeys) {
+            if (this.treatmentTrack.get(trackKey) == Boolean.FALSE) {
+                for (String scheduleKey: scheduleMapKeys) {
+                    if (this.scheduleMap.get(scheduleKey) == null) {
+                        Treatment treatment = treatmentMap.get(trackKey);
                         Integer startHour = treatment.getStartHour();
 
                         this.scheduleMap.put(String.valueOf(startHour), treatment);
