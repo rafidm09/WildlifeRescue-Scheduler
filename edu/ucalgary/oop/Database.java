@@ -22,7 +22,7 @@ public class Database {
         }
     }
 
-    public String selectAnimals() {
+    public  void selectAnimals() {
 
         StringBuffer animals = new StringBuffer();
 
@@ -59,10 +59,6 @@ public class Database {
                     porcupines.add(porcupine_new);
                 }
 
-                System.out.println("Print results: " + results.getString("animalID") + ", " + results.getString("AnimalNickname") + ", " + results.getString("AnimalSpecies"));
-
-                animals.append(results.getString("animalID") + ", " + results.getString("animalNickname"));
-                animals.append('\n');
             }
 
             myStmt.close();
@@ -70,36 +66,6 @@ public class Database {
             ex.printStackTrace();
         }
 
-        return animals.toString();
-    }
-
-    public ArrayList<Treatment> selectTreatments() {
-
-        StringBuffer medicalTreatments = new StringBuffer();
-        ArrayList<Treatment> treatments = new ArrayList<Treatment>();
-
-        try {
-            Statement myStmt = dbConnect.createStatement();
-            results = myStmt.executeQuery("SELECT * FROM TREATMENTS ORDER BY StartHour;");
-
-            while (results.next()) {
-                Treatment treatment_new = new Treatment(results.getInt("animalID"), results.getInt("taskID"), results.getInt("startHour"));
-                treatments.add(treatment_new);
-
-                System.out.println("Print Treatments: " + results.getInt("animalID") + ", " + results.getString("taskID") + ", " + results.getString("startHour"));
-
-                medicalTreatments.append(results.getString("animalID") + ", " + results.getString("startHour"));
-                medicalTreatments.append('\n');
-
-            }
-            System.out.println("Here is a list of Treatments: ");
-            System.out.println(medicalTreatments.toString());
-
-            myStmt.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return treatments;
 
     }
 
@@ -130,6 +96,29 @@ public class Database {
             ex.printStackTrace();
         }
         return tasks;
+
+    }
+
+    public ArrayList<Treatment> selectTreatments() {
+        ArrayList<Treatment> treatments = new ArrayList<Treatment>();
+
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            results = myStmt.executeQuery("SELECT * FROM TREATMENTS ORDER BY StartHour;");
+
+            while (results.next()) {
+                Treatment treatment_new = new Treatment(results.getInt("animalID"), results.getInt("taskID"), results.getInt("startHour"));
+                treatments.add(treatment_new);
+
+                System.out.println("Print Treatments: " + results.getInt("animalID") + ", " + results.getString("taskID") + ", " + results.getString("startHour"));
+
+            }
+
+            myStmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return treatments;
 
     }
 }
