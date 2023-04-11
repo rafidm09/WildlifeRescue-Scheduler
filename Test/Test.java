@@ -159,3 +159,35 @@ public class TaskTest {
     }
 }
 
+public class TreatmentTest {
+
+    @Test
+    public void testTreatmentConstructorValid() {
+        Treatment treatment = new Treatment(6, 1, 0);
+        Assert.assertEquals(6, treatment.getAnimalID());
+        Assert.assertEquals(1, treatment.getTask());
+        Assert.assertEquals(0, treatment.getStartHour());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTreatmentConstructorInvalidAnimalID() {
+        Treatment treatment = new Treatment(-1, 1, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTreatmentConstructorInvalidTaskID() {
+        Treatment treatment = new Treatment(6, -1, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTreatmentConstructorInvalidStartHour() {
+        Treatment treatment = new Treatment(6, 1, -1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTreatmentConstructorInvalidStartHour2() {
+        Treatment treatment = new Treatment(6, 1, 24);
+    }
+
+}
+
