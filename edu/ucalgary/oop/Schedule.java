@@ -260,9 +260,9 @@ class Schedule {
         Set<String> map = this.scheduleMap.keySet();
         for (String key: map) {
             System.out.println(key);
-            System.out.println(this.animalMap.get(this.scheduleMap.get(key).getId()));
+            System.out.println(this.animalMap.get(this.scheduleMap.get(key).getAnimalID()));
             System.out.println(this.taskMap.get(this.scheduleMap.get(key).getTask()));
-            System.out.println(this.treatmentMap.get(this.scheduleMap.get(key).getId()));
+            System.out.println(this.treatmentMap.get(this.scheduleMap.get(key).getAnimalID()));
         }
     }
 
