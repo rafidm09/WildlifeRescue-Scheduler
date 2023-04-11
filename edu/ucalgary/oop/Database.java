@@ -24,8 +24,6 @@ public class Database {
 
     public  void selectAnimals() {
 
-        StringBuffer animals = new StringBuffer();
-
         try {
             Statement myStmt = dbConnect.createStatement();
 
@@ -70,8 +68,6 @@ public class Database {
     }
 
     public ArrayList<Task> selectTasks() {
-
-        StringBuffer strTasks = new StringBuffer();
         ArrayList<Task> tasks = new ArrayList<Task>();
 
         try {
@@ -83,13 +79,7 @@ public class Database {
                 Task task_new = new Task(results.getInt("TaskID"), results.getString("Description"), results.getInt("Duration"), results.getInt("MaxWindow"));
                 tasks.add(task_new);
 
-                strTasks.append(results.getString("TaskID") + ", " + results.getString("Duration"));
-                strTasks.append('\n');
-
             }
-
-            System.out.println("Here is a list of TASKS: ");
-            System.out.println(strTasks);
 
             myStmt.close();
         } catch (SQLException ex) {
