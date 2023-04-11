@@ -304,6 +304,10 @@ class Schedule {
             }
         }
 
+        Set<String> map = this.scheduleMap.keySet();
+        for (String key: map) {
+            System.out.println(key + " -> " + this.scheduleMap.get(key));
+        }
 
     }
 
