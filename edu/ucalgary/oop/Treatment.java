@@ -57,4 +57,9 @@ public class Treatment {
     public int getStartHour() {
         return startHour;
     }
+
+    @Override
+    public String toString() {
+        return this.id + " -> " + this.getAnimalID() + ", " + this.getTask() + ", " + this.getStartHour();
+    }
 }
