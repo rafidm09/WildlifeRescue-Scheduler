@@ -295,7 +295,7 @@ class Schedule {
             if (this.treatmentTrack.get(trackKey) == Boolean.FALSE) {
                 for (String scheduleKey: scheduleMapKeys) {
                     if (this.scheduleMap.get(scheduleKey) == null) {
-                        Treatment treatment = treatmentMap.get(trackKey);
+                        Treatment treatment = this.treatmentMap.get(trackKey);
                         Integer startHour = treatment.getStartHour();
 
                         this.scheduleMap.put(String.valueOf(startHour), treatment);
