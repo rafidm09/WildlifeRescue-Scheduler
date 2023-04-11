@@ -95,16 +95,19 @@ class Schedule {
 
         ArrayList<Integer> tasks = this.taskPriorityMap.get(priorityFlag);
         System.out.println(tasks);
+
         Set<Integer> treatmentKeys = this.treatmentMap.keySet();
 
         for (Integer i: treatmentKeys) {
             Treatment treatment = this.treatmentMap.get(i);
 
-            System.out.println(treatment.getTask());
-			Integer startHour = treatment.getStartHour();
-			
-			this.scheduleMap.put(String.valueOf(startHour), treatment);
-			System.out.println(String.valueOf(startHour) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
+            if (tasks.contains(treatment.getTask())) {
+                System.out.println(treatment.getTask());
+                Integer startHour = treatment.getStartHour();
+
+                this.scheduleMap.put(String.valueOf(startHour), treatment);
+                System.out.println(String.valueOf(startHour) + " -> " + this.scheduleMap.get(String.valueOf(startHour)).getTask());
+            }
         }
 		
     }
