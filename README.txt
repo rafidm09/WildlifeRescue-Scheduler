@@ -9,7 +9,7 @@ Into the commandline in the ENSF300-FINAL-PROJECT dirctory.
 After compilation the prgram needs to be run. This can also be 
 done through an IDE or by typing:
 
-java edu.ucalgary.oop.GUI
+java -cp .;lib/mysql-connector-java-8.0.23.jar edu.ucalgary.oop.GUI
 
 Into the commandline in the ENSF300-FINAL-PROJECT dirctory.
 Once run a new window will appear that will prompt the user for
