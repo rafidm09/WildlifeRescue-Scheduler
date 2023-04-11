@@ -94,11 +94,12 @@ class Schedule {
         int priorityFlag = 1;
 
         ArrayList<Integer> tasks = this.taskPriorityMap.get(priorityFlag);
-
+        System.out.println(tasks);
         Set<Integer> treatmentKeys = this.treatmentMap.keySet();
+
         for (Integer i: treatmentKeys) {
             Treatment treatment = this.treatmentMap.get(i);
-			
+
             System.out.println(treatment.getTask());
 			Integer startHour = treatment.getStartHour();
 			
